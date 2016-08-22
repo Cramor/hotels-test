@@ -19,6 +19,7 @@ function get_com($link, $parent_id, $lvl)
             <label for="comment">Комментарий</label>
             <textarea name="comment" class="form-control" id="comment" placeholder="Имя">
             </textarea>
+            <input type = hidden name="parent_id" value="'.$row["id"].'" >
         <button type="submit" class="btn btn-default">Отправить</button>
         </div>
     </form>
