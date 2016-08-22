@@ -1,3 +1,6 @@
+<?php
+include("inc/core.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +12,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/comments.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,8 +27,13 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-3.1.0.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-t<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/comments.js"></script>
+
 </body>
+
+
+
 
 </html>
 
@@ -38,21 +47,18 @@ if (isset ($_GET["delete"] )) {
 
 }
 
-$result = mysqli_query($link, "SELECT * FROM comments ORDER BY id");
-while ($row = mysqli_fetch_array($result,MYSQLI_BOTH)) {
-   echo ('<div class="media">
-    <div class="media-left media-middle">
-    </div>
-    <div class="media-body">
-        <h4 class="media-heading"><strong>'.$row["name"].'</strong> '.$row["comment_date"].'<a class="btn btn-default" href="comments.php?delete='.$row["id"].'" role="button">УДОЛИ</a></h4>
-        <div class="panel panel-default">
-            <div class="panel-body">
-    '.$row["comment"].'
-    </div>
-        </div>
-    </div>
-</div>');
-}
-
-mysqli_free_result($result);
+get_com($link, 0, 0);
 ?>
+<form method="post" action="Add_comment.php">
+    <div class="form-group" id="add_form">
+        <label for="name">Имя</label>
+        <input type="text" class="form-control" id="name" placeholder="Имя" name="name">
+        <label for="comment">Комментарий</label>
+        <textarea name="comment" class="form-control" id="comment" placeholder="Имя">
+        </textarea>
+    <button type="submit" class="btn btn-default">Отправить</button>
+    </div>
+</form>
+
+
+
